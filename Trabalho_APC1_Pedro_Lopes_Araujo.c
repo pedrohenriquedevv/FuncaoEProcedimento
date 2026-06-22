@@ -25,6 +25,10 @@ void Interface()
     printf("13-> Soma dos Elementos de um Vetor\n");
     printf("14-> Soma de Dois Vetores \n");
     printf("15-> Produto de Dois Vetores \n");
+    printf("16-> Soma dos Elementos de uma Matriz (5x5)\n");
+    printf("17-> Soma das Diagonais de uma Matriz (6x6)\n");
+    printf("18-> Soma de Linha e Coluna Específica (7x6)\n");
+    printf("19-> Menor Elemento da Diagonal Secundária (6x6)\n");
     printf("0-> Sair\n");
     printf("////////////\n");
 
@@ -43,6 +47,173 @@ void Enter()
 }
 
 //Funções 
+
+void MenorDiagonalSecundaria()
+{
+    Limpar();
+    int A[6][6];
+    int menor;
+
+    printf("// Menor Elemento da Diagonal Secundária (Matriz 6x6) //\n");
+    
+    printf("Preencha a Matriz A (6 linhas e 6 colunas):\n");
+    for (int i = 0; i < 6; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("Digite o valor para A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    menor = A[0][5];
+
+    for (int i = 1; i < 6; i++) 
+    {
+        if (A[i][5 - i] < menor) 
+        {
+            menor = A[i][5 - i];
+        }
+    }
+
+    printf("\n/// Resultados ///\n");
+    printf("Matriz A:\n");
+    for (int i = 0; i < 6; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("[%d]\t", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nO menor elemento da Diagonal Secundária é: %d\n", menor);
+}
+
+void SomaLinhaColunaMatriz()
+{
+    Limpar();
+    int A[7][6];
+    int somaLinha5 = 0;
+    int somaColuna3 = 0;
+
+    printf("// Soma da Linha 5 e Coluna 3 de uma Matriz 7x6 //\n");
+    
+    printf("Preencha a Matriz A (7 linhas e 6 colunas):\n");
+    for (int i = 0; i < 7; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("Digite o valor para A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    for (int j = 0; j < 6; j++) 
+    {
+        somaLinha5 += A[4][j];
+    }
+
+    for (int i = 0; i < 7; i++) 
+    {
+        somaColuna3 += A[i][2];
+    }
+
+    printf("\n/// Resultados ///\n");
+    printf("Matriz A:\n");
+    for (int i = 0; i < 7; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("[%d]\t", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nSoma dos elementos da Linha 5 (índice 4): %d\n", somaLinha5);
+    printf("Soma dos elementos da Coluna 3 (índice 2): %d\n", somaColuna3);
+}
+
+void DiagonaisMatriz()
+{
+    Limpar();
+    int A[6][6];
+    int somaPrincipal = 0;
+    int somaSecundaria = 0;
+
+    printf("// Soma das Diagonais de uma Matriz 6x6 //\n");
+    
+    printf("Preencha a Matriz A (6 linhas e 6 colunas):\n");
+    for (int i = 0; i < 6; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("Digite o valor para A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    // Processamento das diagonais
+    for (int i = 0; i < 6; i++) 
+    {
+        somaPrincipal += A[i][i];  
+        somaSecundaria += A[i][5 - i];  
+    }
+
+    printf("\n/// Resultados ///\n");
+    printf("Matriz A:\n");
+    for (int i = 0; i < 6; i++) 
+    {
+        for (int j = 0; j < 6; j++) 
+        {
+            printf("[%d]\t", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nSoma da Diagonal Principal: %d\n", somaPrincipal);
+    printf("Soma da Diagonal Secundária: %d\n", somaSecundaria);
+}
+
+void SomaElementosMatriz()
+{
+    Limpar();
+    int A[5][5];
+    int soma = 0;
+
+    printf("// Soma dos Elementos de uma Matriz 5x5 //\n");
+    
+    printf("Preencha a Matriz A:\n");
+    for (int i = 0; i < 5; i++) 
+    {
+        for (int j = 0; j < 5; j++) 
+        {
+            printf("Digite o valor para A[%d][%d]: ", i, j);
+            scanf("%d", &A[i][j]);
+        }
+    }
+
+    for (int i = 0; i < 5; i++) 
+    {
+        for (int j = 0; j < 5; j++) 
+        {
+            soma += A[i][j];
+        }
+    }
+
+    printf("\n/// Resultados ///\n");
+    printf("Matriz A:\n");
+    for (int i = 0; i < 5; i++) 
+    {
+        for (int j = 0; j < 5; j++) 
+        {
+            printf("[%d]\t", A[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\nA soma de todos os elementos da matriz é: %d\n", soma);
+}
 
 void ProdutoDoisVetores()
 {
@@ -755,6 +926,22 @@ int main()
             case 15:
                 ProdutoDoisVetores();
                 Enter();
+            break;
+            case 16:
+                SomaElementosMatriz();
+                Enter();
+            break;
+            case 17: 
+                DiagonaisMatriz(); 
+                Enter(); 
+            break;
+            case 18: 
+                SomaLinhaColunaMatriz(); 
+                Enter(); 
+            break;
+            case 19: 
+                MenorDiagonalSecundaria(); 
+                Enter(); 
             break;
             default:
                 printf("Opcao invalida!");
